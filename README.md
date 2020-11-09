@@ -24,3 +24,39 @@ $ touch ${home}/.nudge/slack_key
 ```
 java -Dspring.profiles.active=${prod/self} -jar nudge.jar
 ```
+
+## 3. api
+### create todo
+```
+api : /todo
+method : post
+header : content-type, accept : application/json
+body : 
+{
+    "targetDate": "20/11/27",
+    "channel": "slack channel",
+    "todo": "todo"
+}
+response : Long id
+```
+### find todo on the date
+```
+api : /todo?date=yy/MM/dd
+method : get
+header : accept : application/json
+response : 
+[{
+    "id":64,
+    "targetDate":"yy/MM/dd",
+    "channel":"channel",
+    "todo":"todo",
+    "registerDate":"yy/MM/dd HH:mm:ss"}
+, ...]
+```
+### notify today todos
+```
+api : /todo/today
+method : post
+header : content-type,accept : application/json
+response : 
+```
