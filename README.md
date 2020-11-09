@@ -8,7 +8,7 @@ $ touch slack/slack_key
 ```
 ##### write token in slack/slack_key
 
-## 1.2 `prod`
+### 1.2 `prod`
 #### 1.2.1 make directory
 ```
 $ mkdir ${home}/.nudge
