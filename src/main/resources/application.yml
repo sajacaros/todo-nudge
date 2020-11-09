@@ -1,0 +1,41 @@
+server:
+  port: 9111
+spring:
+  profiles:
+    active: self
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: validate
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+---
+spring:
+  profiles: self
+  datasource:
+    url: jdbc:h2:mem:nudge
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+key.path: slack/slack_key
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:h2:file:${user.home}/.nudge/db/todo
+    jpa:
+      show-sql: false
+      hibernate:
+        ddl-auto: validate
+key.path: ${user.home}/.nudge/slack_key
